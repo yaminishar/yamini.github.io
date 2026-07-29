@@ -1,21 +1,30 @@
 // ===== Sidebar toggle (mobile) =====
 const sidebar = document.getElementById('sidebar');
 const sidebarToggle = document.getElementById('sidebar-toggle');
+const sidebarOverlay = document.getElementById('sidebar-overlay');
 const navLinks = document.getElementById('nav-links');
+
+function closeSidebar() {
+    sidebar.classList.remove('open');
+    sidebarToggle.classList.remove('active');
+    sidebarToggle.setAttribute('aria-expanded', 'false');
+    sidebarOverlay?.classList.remove('show');
+    document.body.classList.remove('no-scroll');
+}
 
 if (sidebarToggle && sidebar) {
     sidebarToggle.addEventListener('click', () => {
         const isOpen = sidebar.classList.toggle('open');
         sidebarToggle.classList.toggle('active', isOpen);
         sidebarToggle.setAttribute('aria-expanded', String(isOpen));
+        sidebarOverlay?.classList.toggle('show', isOpen);
+        document.body.classList.toggle('no-scroll', isOpen);
     });
 
+    sidebarOverlay?.addEventListener('click', closeSidebar);
+
     navLinks?.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            sidebar.classList.remove('open');
-            sidebarToggle.classList.remove('active');
-            sidebarToggle.setAttribute('aria-expanded', 'false');
-        });
+        link.addEventListener('click', closeSidebar);
     });
 }
 
@@ -43,10 +52,8 @@ setActiveLink();
 // ===== Typing effect for sidebar role =====
 const roleTarget = document.getElementById('role-target');
 const roles = [
-    'C# / .NET Developer',
-    'JavaScript & Java Developer',
-    'Azure DevOps Engineer',
-    'Application Packaging Specialist'
+    'Application Packaging Specialist',
+    'Software Developer - Java & C#'
 ];
 
 let roleIndex = 0;
