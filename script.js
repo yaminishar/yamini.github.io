@@ -43,9 +43,10 @@ setActiveLink();
 // ===== Typing effect for sidebar role =====
 const roleTarget = document.getElementById('role-target');
 const roles = [
-    'Placeholder Role One',
-    'Placeholder Role Two',
-    'Placeholder Role Three'
+    'C# / .NET Developer',
+    'JavaScript & Java Developer',
+    'Azure DevOps Engineer',
+    'Application Packaging Specialist'
 ];
 
 let roleIndex = 0;
